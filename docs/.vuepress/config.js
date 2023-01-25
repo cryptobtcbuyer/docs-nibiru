@@ -313,10 +313,6 @@ module.exports = {
       {
         hostname: "https://docs.nibiru.fi"
       }
-    ], 
-    [
-      "vuepress-plugin-clean-urls",
-      { }
-    ],
+    ] 
   ]
 };
