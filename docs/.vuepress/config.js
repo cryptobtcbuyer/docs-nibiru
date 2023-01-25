@@ -316,7 +316,7 @@ module.exports = {
     ], 
     [
       "vuepress-plugin-clean-urls",
-      { normalSuffix: "" }
+      { }
     ],
   ]
 };
