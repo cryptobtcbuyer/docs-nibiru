@@ -119,8 +119,7 @@ A Cosmos coin, or `sdk.Coin`, defines a token with a denomination and an amount.
 
 ## Stableswaps
 
-Given the proliferation of stablecoins and stable pairs in the Cosmos ecosystem, the Nibi-Swap AMM will support pools based on [Curve’s Stableswap](https://curve.fi/files/stableswap-paper.pdf) curve. 
-
+To synergize with the proliferation of stablecoins and stable pairs in the Cosmos ecosystem, the Nibi-Swap AMM supports **stableswap pools** based on [Curve Finance’s Stableswap curve](https://curve.fi/files/stableswap-paper.pdf). 
 
 The stableswap curve operates like a constant-price curve when a portfolio of assets is balanced and tends toward behaving like a constant-product curve if the tokens lose peg.
 

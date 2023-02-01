@@ -75,8 +75,8 @@ module.exports = {
             },
             {
               title: "Nibi-Perps",
-              directory: false,
-              path: "/ecosystem/nibi-perps.html"
+              directory: true,
+              path: "/ecosystem/nibi-perps"
             },
             {
               title: "Nibi-Swap AMM",

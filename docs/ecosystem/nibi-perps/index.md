@@ -1,6 +1,10 @@
+---
+order: 1
+---
+
 # 🤝 Nibi-Perps
 
-![](../img/nibi-perps-banner.png)
+![](../../img/nibi-perps-banner.png)
 
 **Table of Contents —  Nibi-Perps**
 
@@ -15,7 +19,6 @@
     - [Trade Limit Ratio](#trade-limit-ratio)
     - [Fluctuation Limit Ratio](#fluctuation-limit-ratio)
     - [Max Oracle Spread Limit Ratio](#max-oracle-spread-limit-ratio)
-  - [Funding Payments](#funding-payments)
   - [Liquidations](#liquidations)
   - [Bad Debt](#bad-debt)
   - [Opening Positions](#opening-positions)
@@ -105,7 +108,7 @@ Virtual pools enable Nibiru to have **clear pricing rules.** Each perpetual futu
 ## Market Specific Parameters
 
 ::: tip
-For the full specification of all parameters involved in Nibi-Perps, see the [`perp` module technical documentation](../cli/modules/perp.md#parameters-of-nibi-perps).
+For the full specification of all parameters involved in Nibi-Perps, see the [`perp` module technical documentation](../../cli/modules/perp.md#parameters-of-nibi-perps).
 :::
 
 ### Trade Limit Ratio
@@ -121,26 +124,6 @@ Similar to the trade limit ratio, every virtual pool has a parameter called the 
 Every virtual pool has a parameter called the `MaxOracleSpreadLimitRatio`. It comes into effect in extreme market conditions, when the mark (spot) price has deviated from the index (oracle) price by too much. Liquidations will start happening based on the index price instead of the mark price.
 
 For example, let's imagine a virtual pool of BTC/NUSD and a `MaxOracleSpreadLimitRatio` of `0.1`. One day, the mark price and index price are equal to each other at \$1000 (1000 NUSD per BTC). The next day, if the index price stays constant at \$1000, but the mark price moves to 1100 or 900, then the oracle price is used for determining margin ratio and, thus, liquidations. This is to protect traders in times of extreme market volatility.
-
-## Funding Payments
-
-Perpetual contracts rely on a scheduled payment between longs and shorts known as **funding payments**. Funding payments are meant to converge the price between the derivate contract, or perp, and its underlying. As a result, they are scaled based on the difference between the mark price and index price.
-
-Longs and shorts are paid with the exact funding rate formula [used by FTX](https://help.ftx.com/hc/en-us/articles/360027946571-Funding). Realized and unrealized funding payments are updated every block directly on each position. Global funding calculations are recorded in a time-weighted fashion, where the **funding rate** is the difference between the mark TWAP and index TWAP divided by the number of funding payments per day:
-
-```go
-fundingRate = (markTWAP - indexTWAP) / fundingPaymentsPerDay
-```
-
-In the initial version of Nibi-Perps, these payments will occur every half-hour, implying a `fundingPaymentsPerDay` value of 48. This setup is analogous to a traditional future that expires once a day. If a perp trades consistently at 2% above its underlying index price, the funding payments would amount to 2% of the position size after a full day.
-
-If the funding rate is positive, mark price is greater than index price and longs pay shorts. Nibi-Perps automatically deducts the funding payment amount from the margin of the long positions.
-
-```go
-fundingPayment = positionSize * fundingRate
-```
-
-Here, position size refers to amount of base asset represented by the derivative. I.e., a BTC:USD perp with 7 BTC of exposure would have a position size of 7.
 
 ## Liquidations
 
@@ -211,4 +194,3 @@ Nibiru should never need the Safety Fund, but we include it as an extra precauti
 ### Treasury
 
 The protocol Treasury will be the final backstop to minimize drawdown. This is the last fail safe for the protocol. "NIBI printing" is not a stability mechanism for the perps exchange.
-
