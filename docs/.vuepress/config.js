@@ -80,8 +80,8 @@ module.exports = {
             },
             {
               title: "Nibi-Swap AMM",
-              directory: false,
-              path: "/ecosystem/nibi-swap.html"
+              directory: true,
+              path: "/ecosystem/nibi-swap"
             },
             {
               title: "NUSD Stablecoin",
