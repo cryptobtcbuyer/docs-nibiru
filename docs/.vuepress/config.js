@@ -89,9 +89,9 @@ module.exports = {
               path: "/ecosystem/nusd-stablecoin.html"
             },
             {
-              title: "Price Feed Oracles",
-              directory: false,
-              path: "/ecosystem/price-feed-oracles.html"
+              title: "Oracle Module",
+              directory: true,
+              path: "/ecosystem/oracle"
             },
             {
               title: "Governance",
