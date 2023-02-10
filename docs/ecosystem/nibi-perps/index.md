@@ -108,7 +108,7 @@ Virtual pools enable Nibiru to have **clear pricing rules.** Each perpetual futu
 ## Market Specific Parameters
 
 ::: tip
-For the full specification of all parameters involved in Nibi-Perps, see the [`perp` module technical documentation](../../cli/modules/perp.md#parameters-of-nibi-perps).
+For the full specification of all parameters involved in Nibi-Perps, see the [`perp` module technical documentation](../../dev/x/perp.md#market-specific-parameters).
 :::
 
 ### Trade Limit Ratio
@@ -147,7 +147,7 @@ If a position has some remaining margin after realizing its PnL but not enough t
 
 If instead the remaining margin on a position becomes negative due to the realized PnL, there is both positional and liquidation bad debt because a position with nonpositive value can't possibly cover a liquidation fee.
 
-Whenever a trader owes bad debt, the Perp EF covers the payment. 
+Whenever a trader owes bad debt, the Perp EF covers the payment.
 
 ## Opening Positions
 
