@@ -14,7 +14,7 @@ order: 1
   - [Leverage and Position Values](#leverage-and-position-values)
   - [Margin and Margin Ratio](#margin-and-margin-ratio)
     - [Cross Margin versus Isolated Margin](#cross-margin-versus-isolated-margin)
-  - [Virtual Pools](#virtual-pools)
+  - [Perp AMM Pools](#perp-amm-pools)
   - [Market Specific Parameters](#market-specific-parameters)
     - [Trade Limit Ratio](#trade-limit-ratio)
     - [Fluctuation Limit Ratio](#fluctuation-limit-ratio)
@@ -99,11 +99,11 @@ Another good way to think about margin ratio is as the inverse of a position's e
 
 In future upgrade, we'd like to implement a cross margin model and allow traders to select whether to use cross or isolated margin in the trading app. This way, traders could elect to have profits from one position support losses in another.
 
-## Virtual Pools
+## Perp AMM Pools
 
-Positions on Nibiru Perps are priced using virtual liquidity pools with no real liquidity stored inside. In this model, assets are priced using the constant product model (`x*y=k`) pioneered by Uniswap. Tokens are sent to a clearing house, which stores the collateral in a vault, and virtual pools are used for price discovery of the derivatives. This allows for the use of leverage trading and removes the need for liquidity providers, or market makers.
+Positions on Nibiru Perps are priced using constant-product liquidity pools with no real liquidity stored inside. In this model, assets are priced using the constant product model (`x*y=k`) pioneered by Uniswap. Tokens are sent to a clearing house, which stores the collateral in a vault, and perp pools are used for price discovery of the derivatives. This allows for the use of leverage trading and removes the need for liquidity providers, or market makers.
 
-Virtual pools enable Nibiru to have **clear pricing rules.** Each perpetual futures contract specifies the base asset’s quantity delivered for a single contract. For instance, OSMO/USDC, UMEE/USDC and ATOM/USDC futures contracts represent only one unit of the base assets OSMO, UMEE, and ATOM, similar to spot markets.
+AMM pools enable Nibiru to have **clear pricing rules.** Each perpetual futures contract specifies the base asset’s quantity delivered for a single contract. For instance, OSMO/USDC, UMEE/USDC and ATOM/USDC futures contracts represent only one unit of the base assets OSMO, UMEE, and ATOM, similar to spot markets.
 
 ## Market Specific Parameters
 
@@ -113,17 +113,17 @@ For the full specification of all parameters involved in Nibi-Perps, see the [`p
 
 ### Trade Limit Ratio
 
-Every virtual pool has a parameter called the `TradeLimitRatio`, which limits how much of the asset reserves a trader can affect in a single transaction. For example, if a virtual pool had 100 BTC and 2,000,000 NUSD, a `TradeLimitRatio` of `0.1` would only allow the trader to deposit or withdraw up to 10 BTC or 200,000 NUSD. This is done to prevent predatory traders from sending other traders' positions underwater.
+Every perp pool has a parameter called the `TradeLimitRatio`, which limits how much of the asset reserves a trader can affect in a single transaction. For example, if a perp pool had 100 BTC and 2,000,000 NUSD, a `TradeLimitRatio` of `0.1` would only allow the trader to deposit or withdraw up to 10 BTC or 200,000 NUSD. This is done to prevent predatory traders from sending other traders' positions underwater.
 
 ### Fluctuation Limit Ratio
 
-Similar to the trade limit ratio, every virtual pool has a parameter called the `FluctuationLimitRatio`. The fluctuation limit ratio limits inter-block fluctuations of the reserve assets. For example, if a virtual pool had 100 BTC and 2,000,000 NUSD at block 1, along with a `FluctuationLimitRatio` of 0.2, then the maximum amount of reserve asset fluctuation that can happen in block 2 is 20 BTC or 400,000 NUSD. This is also to prevent predatory traders from sending other traders' positions underwater.
+Similar to the trade limit ratio, every perp pool has a parameter called the `FluctuationLimitRatio`. The fluctuation limit ratio limits inter-block fluctuations of the reserve assets. For example, if a perp pool had 100 BTC and 2,000,000 NUSD at block 1, along with a `FluctuationLimitRatio` of 0.2, then the maximum amount of reserve asset fluctuation that can happen in block 2 is 20 BTC or 400,000 NUSD. This is also to prevent predatory traders from sending other traders' positions underwater.
 
 ### Max Oracle Spread Limit Ratio
 
-Every virtual pool has a parameter called the `MaxOracleSpreadLimitRatio`. It comes into effect in extreme market conditions, when the mark (spot) price has deviated from the index (oracle) price by too much. Liquidations will start happening based on the index price instead of the mark price.
+Every perp pool has a parameter called the `MaxOracleSpreadLimitRatio`. It comes into effect in extreme market conditions, when the mark (spot) price has deviated from the index (oracle) price by too much. Liquidations will start happening based on the index price instead of the mark price.
 
-For example, let's imagine a virtual pool of BTC/NUSD and a `MaxOracleSpreadLimitRatio` of `0.1`. One day, the mark price and index price are equal to each other at \$1000 (1000 NUSD per BTC). The next day, if the index price stays constant at \$1000, but the mark price moves to 1100 or 900, then the oracle price is used for determining margin ratio and, thus, liquidations. This is to protect traders in times of extreme market volatility.
+For example, let's imagine a perp pool of BTC/NUSD and a `MaxOracleSpreadLimitRatio` of `0.1`. One day, the mark price and index price are equal to each other at \$1000 (1000 NUSD per BTC). The next day, if the index price stays constant at \$1000, but the mark price moves to 1100 or 900, then the oracle price is used for determining margin ratio and, thus, liquidations. This is to protect traders in times of extreme market volatility.
 
 ## Liquidations
 
@@ -151,9 +151,11 @@ Whenever a trader owes bad debt, the Perp EF covers the payment.
 
 ## Opening Positions
 
-When opening a position, tokens are deposited and locked as **margin**. Under the hood, these tokens are stored with the **clearing house**, which uses the virtual pools for price discovery, converting the deposit into virtual assets.
+When opening a position, tokens are deposited and locked as **margin**. Under the hood, these tokens are stored with the **clearing house**, which uses AMM pools for price discovery and handles accounting for each position.
 
-These virtual assets change the reserves of their corresponding pool, determining the price of the derivative (position) while enabling the use of leverage. The protocol controls the funding payments in NUSD, actively monitoring the liquidation and the management of the Ecosystem Fund.
+The exposure a user gets for opening a position is reflected in the change to the reserves of the corresponding AMM pool, which determines the price of the derivative (position) while enabling the use of leverage. 
+
+The protocol code also manages funding payments and liquidations of positions that have too much debt.
 
 ## Perp: NIBI Token
 
@@ -167,7 +169,7 @@ Stakers of NIBI enjoy a trading fee discount proportional to the amount staked. 
 
 Naturally, risks are inherent with any novel project being built. Nibiru’s ecosystem is built to promote the robust decentralization, permissionless creation of perps. As a result, community members can start trading without the supervision of a central authority, meaning the safety of having a facilitating party will not exist to the same degree. That being said, new market proposals will require governance approval for listing and a listing fee in NIBI tokens.
 
-The permissionless state of market creation can drive the protocol to in-solvency in a black swan event. To mitigate against the risk of one market spilling over to others, Nibiru has **3 layers of backstop** to account for periods of extreme volatility. In ordered priority, these are the **Ecosystem Fund, Safety Module, and the Treasury**:
+The permissionless state of market creation can drive the protocol to in-solvency in a black swan event. To mitigate against the risk of one market spilling over to others, Nibiru has **3 layers of backstop** to account for periods of extreme volatility. In ordered priority, these are the **Ecosystem Fund, Safety Module, and the Treasury**.
 
 ### Ecosystem Fund (EF)
 

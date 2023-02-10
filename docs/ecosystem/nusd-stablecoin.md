@@ -18,22 +18,6 @@ The **collateral ratio (CR)** is defined as the proportion of NUSD’s value tha
 
 Nibiru’s collateral ratio changes in response to the price of NUSD on the open market. A decline in the collateral ratio supports protocol expansion in periods of growth, while an increase in collateral during price downturns helps to curate system trust. If the price of NUSD goes too far below its peg (in a pre-determined threshold), the collateral ratio is automatically increased. If NUSD goes far enough above its peg, the collateral ratio is decreased.
 
-### Liquidity Ratio
-
-Nibiru adjusts the Collateral Ratio based on changes in liquidity, measuring NIBI liquidity against the total supply of NUSD. We define the **liquidity ratio (LR)** as follows:
-
-$$
-\text{LiquidityRatio} = \dfrac{ \text{marketCap}{\text{NIBI}}}{ \text{marketCap}{\text{NUSD}}}
-$$
-
-During sustained periods of net-negative changes in the liquidity ratio, the market signals that more collateral should back the system. Using hard collateral (USDC) within the system dampens the reflexive downward spirals that are more likely to occur in systems entirely reliant upon endogenous collateral. More NUSD can be redeemed with an increasingly smaller percentage impact on NIBI supply. As a result, the system can absorb more NIBI sell pressure from the sale of tokens from NUSD redemptions without risking the potential for negative feedback spirals.
-
-The worst-case scenario for NUSD is if NUSD holders can drain all the collateral from the system through redemptions, leaving the remaining holders with insufficiently collateralized NUSD. This situation is only possible if NIBI has a CR that contradicts the true amount of collateral in its reserves. 
-
-The CR is not designed to rapidly fluctuate, so there will not be extended opportunities in which the CR vastly exceeds the actual percentage of collateral in the system.
-
-If instead the liquidity ratio tends to increase for an extended period of time, the market has signaled NIBI has strong enough value to justify lowering the CR, which better facilitates scaling for NUSD.
-
 ### Re-collateralize
 
 **Recollateralize** is a function that incentivizes the caller to add up to the amount of collateral needed to reach some **target collateral ratio** (`collRatioTarget`). Recollateralize checks if the USD value of collateral in the protocol is below the required amount defined by the current collateral ratio. Here, Nibiru's NUSD stablecoin is taken to be the dollar that determines USD value.
@@ -72,6 +56,21 @@ nibiOut = (collNeeded * priceColl) * (1 + bonusRate) / priceNIBI
 
 See "collateral\_ratio.go" in the stablecoin module of [NibiruChain/nibiru](https://github.com/NibiruChain/nibiru/).
 
+### Liquidity Ratio
+
+Nibiru adjusts the Collateral Ratio based on changes in liquidity, measuring NIBI liquidity against the total supply of NUSD. We define the **liquidity ratio (LR)** as follows:
+
+$$
+\text{LiquidityRatio} = \dfrac{ \text{marketCap}{\text{NIBI}}}{ \text{marketCap}{\text{NUSD}}}
+$$
+
+During sustained periods of net-negative changes in the liquidity ratio, the market signals that more collateral should back the system. Using hard collateral (USDC) within the system dampens the reflexive downward spirals that are more likely to occur in systems entirely reliant upon endogenous collateral. More NUSD can be redeemed with an increasingly smaller percentage impact on NIBI supply. As a result, the system can absorb more NIBI sell pressure from the sale of tokens from NUSD redemptions without risking the potential for negative feedback spirals.
+
+The worst-case scenario for NUSD is if NUSD holders can drain all the collateral from the system through redemptions, leaving the remaining holders with insufficiently collateralized NUSD. This situation is only possible if NIBI has a CR that contradicts the true amount of collateral in its reserves. 
+
+The CR is not designed to rapidly fluctuate, so there will not be extended opportunities in which the CR vastly exceeds the actual percentage of collateral in the system.
+
+If instead the liquidity ratio tends to increase for an extended period of time, the market has signaled NIBI has strong enough value to justify lowering the CR, which better facilitates scaling for NUSD.
 
 ### Buybacks
 

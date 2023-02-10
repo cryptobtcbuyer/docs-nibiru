@@ -81,9 +81,9 @@ If either of these conditions are met, this vote is considered a miss.
 
 ### Rewards for Ballot Participation
 
-A validator can be rewarded for providing accurate data, this part is dependent on how the chain is designed (yet to be defined for Nibiru).
+An oracle is rewarded for providing accurate data. The reward amount is weighted proportional to stake (voting power) and will include protocol revenue from dapps like Nibi-Perps that depend heavily on the oracle module.
 
-<!-- TODO -->
+The exact model for the oracle incentives is still under discussion.
 
 ### Abstaining from Voting
 
