@@ -4,7 +4,7 @@ order: 1
 
 # 🤝 Nibi-Perps
 
-![](../../img/nibi-perps-banner.png)
+![Nibiru Perps Banner](../../img/nibi-perps-banner.png)
 
 **Table of Contents —  Nibi-Perps**
 
