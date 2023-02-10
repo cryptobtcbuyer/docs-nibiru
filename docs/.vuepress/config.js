@@ -15,7 +15,7 @@ module.exports = {
     ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" }],
     ['link', { rel: "manifest", href: "/site.webmanifest" }],
     ['meta', { name: "msapplication-TileColor", content: "#2e3148" }],
-    ['meta', {name: "google-site-verification", content: "Uj8rxJHITFhFY8jBVBQfiPt9JcLl77JMkR50e9t4qGM"}],
+    ['meta', { name: "google-site-verification", content: "Uj8rxJHITFhFY8jBVBQfiPt9JcLl77JMkR50e9t4qGM" }],
     ['meta', { name: "theme-color", content: "#ffffff" }],
     ['link', { rel: "icon", type: "image/svg+xml", href: "/favicon-svg.svg" }],
     ['link', { rel: "icon", type: "image/svg+xml", href: "/favicon.ico" }],
@@ -150,12 +150,12 @@ module.exports = {
             {
               title: "Running a Full Node",
               directory: true,
-              path: "/run-nodes/testnet"
+              path: "/run-nodes/testnet/"
             },
             {
               title: "For Validators",
               directory: true,
-              path: "/run-nodes/validators"
+              path: "/run-nodes/validators/"
             },
           ]
         },
@@ -313,6 +313,6 @@ module.exports = {
       {
         hostname: "https://docs.nibiru.fi"
       }
-    ] 
+    ]
   ]
 };

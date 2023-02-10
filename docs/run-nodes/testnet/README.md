@@ -12,8 +12,8 @@ You can find a table of each Nibiru testnet and its current status below.
 
 | Network | Chain ID         | Description              | Version                                                               | Status |
 | ------- | ---------------- | ------------------------ | --------------------------------------------------------------------- | ------ |
-| Testnet | nibiru-testnet-1 | Nibiru's default testnet | [v0.15.0](https://github.com/NibiruChain/nibiru/releases/tag/v0.15.0) | Active |
 | Testnet | nibiru-testnet-2 | Nibiru's default testnet | [v0.16.3](https://github.com/NibiruChain/nibiru/releases/tag/v0.16.3) | Active |
+| Testnet | nibiru-testnet-3 | Nibiru's incentivized testnet |  | Coming Soon |
 
 ::: tip
 You can see current status of the blockchain at the [Nibiru Block Explorer](https://explorer.testnet.nibiru.fi/).
@@ -24,7 +24,6 @@ The explorer allows you to search through transactions, blocks, wallet addresses
 
 | Chain ID         | Block Time | Unbonding Time | Voting Period |
 | ---------------- | ---------- | -------------- | ------------- |
-| nibiru-testnet-1 | 5 seconds  | 21 days        | 48 hours      |
 | nibiru-testnet-2 | 2 seconds  | 2 hours        | 24 hours      |
 
 ---
@@ -89,27 +88,27 @@ nibid version
     ```
   
     **(Optional) Verify Genesis File Checksum**
-    
+
     ```bash
     shasum -a 256 $HOME/.nibid/config/genesis.json
 
     # 5cedb9237c6d807a89468268071647649e90b40ac8cd6d1ded8a72323144880d $HOME/.nibid/config/genesis.json
-    ``` 
+    ```
 
-1. Update seeds list in the configuration file `$HOME/.nibid/config/config.toml`.
+4. Update seeds list in the configuration file `$HOME/.nibid/config/config.toml`.
 
     ```bash
     NETWORK=nibiru-testnet-2
     sed -i 's|seeds =.*|seeds = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/seeds)'"|g' $HOME/.nibid/config/config.toml
     ```
 
-2. Set minimum gas prices
+5. Set minimum gas prices
 
     ```bash
     sed -i 's/minimum-gas-prices =.*/minimum-gas-prices = "0.025unibi"/g' $HOME/.nibid/config/app.toml
     ```
 
-3. Setup state-sync parameters for catching up faster with the network (optional)
+6. Setup state-sync parameters for catching up faster with the network (optional)
 
     ```bash
     NETWORK=nibiru-testnet-2
@@ -119,7 +118,7 @@ nibid version
     sed -i 's|trust_hash =.*|trust_hash = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/trust_hash)'"|g' $HOME/.nibid/config/config.toml
     ```
 
-4. Start your node (choose one of the options)
+7. Start your node (choose one of the options)
 
     ```bash
     # without a daemon
@@ -132,7 +131,7 @@ nibid version
     sudo systemctl start cosmovisor-nibiru
     ```
 
-5. Request tokens from the [Web Faucet for nibiru-testnet-2](https://faucet.testnet-2.nibiru.fi/) if required.
+8. Request tokens from the [Web Faucet for nibiru-testnet-2](https://faucet.testnet-2.nibiru.fi/) if required.
 
     ```bash
     FAUCET_URL="https://faucet.testnet-2.nibiru.fi/"
@@ -140,7 +139,7 @@ nibid version
     curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["10000000unibi","100000000000unusd"]}' $FAUCET_URL
     ```
 
-    Please note, that current daily limit for the Web Faucet is 10NIBI (`10000000unibi`) and 100,000 NUSD (`100000000000unusd`).
+    Please note, that current daily limit for the Web Faucet is 11NIBI (`11000000unibi`) and 100 NUSD (`100000000unusd`).
 
     You can also use the testnet Faucet from the `#faucet` channel of the [Nibiru Chain Discord](https://discord.gg/sgPw8ZYfpQ).
 
