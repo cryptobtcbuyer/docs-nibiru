@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-new_docs_dir="dev/nibijs"
+new_docs_dir="docs/dev/nibijs"
 
 # Fetch the nibijs markdown docs from the ts-sdk repo
 git clone git@github.com:NibiruChain/ts-sdk.git
