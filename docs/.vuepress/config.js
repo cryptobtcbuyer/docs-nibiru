@@ -150,12 +150,12 @@ module.exports = {
             {
               title: "Running a Full Node",
               directory: true,
-              path: "/run-nodes/testnet/"
+              path: "/run-nodes/testnet"
             },
             {
               title: "For Validators",
               directory: true,
-              path: "/run-nodes/validators/"
+              path: "/run-nodes/validators"
             },
           ]
         },
@@ -290,7 +290,7 @@ module.exports = {
             {
               title: "Contributing to the docs",
               url:
-                `https://github.com/${REPO}/blob/main/docs/DOCS_README.md`
+                `https://github.com/${REPO}/blob/main/README.md`
             },
             {
               title: "Source code on GitHub",

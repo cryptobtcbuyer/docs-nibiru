@@ -26,7 +26,6 @@ order: 1
   - [Perp VIP Trading Program](#perp-vip-trading-program)
   - [What are the risks? How are they addressed?](#what-are-the-risks-how-are-they-addressed)
     - [Ecosystem Fund (EF)](#ecosystem-fund-ef)
-    - [Safety Module](#safety-module)
     - [Treasury](#treasury)
 
 ---
@@ -169,7 +168,7 @@ Stakers of NIBI enjoy a trading fee discount proportional to the amount staked. 
 
 Naturally, risks are inherent with any novel project being built. Nibiru’s ecosystem is built to promote the robust decentralization, permissionless creation of perps. As a result, community members can start trading without the supervision of a central authority, meaning the safety of having a facilitating party will not exist to the same degree. That being said, new market proposals will require governance approval for listing and a listing fee in NIBI tokens.
 
-The permissionless state of market creation can drive the protocol to in-solvency in a black swan event. To mitigate against the risk of one market spilling over to others, Nibiru has **3 layers of backstop** to account for periods of extreme volatility. In ordered priority, these are the **Ecosystem Fund, Safety Module, and the Treasury**.
+The permissionless state of market creation can drive the protocol to in-solvency in a black swan event. To mitigate against the risk of one market spilling over to others, Nibiru has **3 layers of backstop** to account for periods of extreme volatility. In ordered priority, these are the **Ecosystem Fund and the Treasury**.
 
 ### Ecosystem Fund (EF)
 
@@ -184,14 +183,6 @@ Using these revenue streams, **the EF steps in to pay funding payments to correc
 And **when liquidations don't occur on time**, positions can end up with bad debt, which is also **covered by the EF**. For market crashes and other high volatility events, Nibiru’s liquidation parameters have been based on a ladder based framework taking into account the idiosyncrasies of each asset on the platform.
 
 For example, if an asset has only a spot DEX and Nibiru as its liquidity venues, then such asset can be extremely volatile, warranting different liquidation parameters (such as lower max leverage). Whereas if the assets are BTC or ETH, which are traded on multiple venues CEX/DEX, then the parameters for liquidation are standardized to Perpetual/Drift protocol.
-
-### Safety Module
-
-The next backstop in the case of insolvency on perpetual positions is the Safety Fund. This is a module account in which users could elect to stake NIBI, risking dilutive events in order to backstop and govern the risk on Nibi-Perps. For certain drawdown ranges, NIBI from the Safety Fund could be slashed from stakers and auctioned off against other assets to lessen the severity of the event. Funds from the module can be if liquidations are not profitable enough or if Nibiru governance deems it necessary.
-
-Staking into the Safety Fund would create an opportunity for NIBI holders to earn additional yield relative to delegating/validating in Nibiru proof-of-stake. If drawdown ranges exceed values manageable by the Ecosystem Fund, the Safety Fund takes its place.
-
-Nibiru should never need the Safety Fund, but we include it as an extra precaution.
 
 ### Treasury
 
