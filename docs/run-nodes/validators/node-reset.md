@@ -2,11 +2,11 @@
 order: 2
 ---
 
-# Resetting a validator node
+# Reset a validator node
 
 Instructions for validators to rebuild in the case of a chain reset. {synopsis}
 
-Any upcoming resets will be announced in the `#testnet` channel on [Nibiru's Discord server](https://discord.com/invite/sgPw8ZYfpQ). 
+Any upcoming resets will be announced in the `#testnet` channel on [Nibiru's Discord server](https://discord.com/invite/sgPw8ZYfpQ).
 To reset your node and rejoin the testnet, please follow the steps below:
 
 ## Remove the old chain data and binary
@@ -19,10 +19,8 @@ sudo rm $HOME/go/bin/nibid
 ## Install the new binary version
 
 ```bash
-# git clone git@github.com:NibiruChain/nibiru.git # (ssh)
-# git clone https://github.com/NibiruChain/nibiru.git # (https)
+git clone https://github.com/NibiruChain/nibiru.git # (https)
 cd nibiru
-git pull
 git fetch --tags
 git checkout v0.16.3
 make install
@@ -37,4 +35,4 @@ nibid version
 
 ## Recreate the validator
 
-Follow the same steps from ["Joining Testnet"](../testnet) and ["Validating on Testnet"](./) again.
+Follow the same steps from ["Joining Testnet"](../testnet/README.md) and ["Validating on Testnet"](README.md) again.

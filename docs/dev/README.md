@@ -1,6 +1,7 @@
-# Protocol Development 
+# Protocol Development
 
 Summary on all developer tooling for protocol and smart contract development on Nibiru. {synopsis}
+
 ## Modules of the Nibiru Blockchain
 
 See the [Module Reference](./x/) for comprehensive documentation.
@@ -9,13 +10,14 @@ Nibiru's Cosmos-SDK modules define the core logic for Nibi-Perps, Nibi-Swap, and
 
 ## Clients
 
-Both the TypeScript SDK and Python SDK provide comprehensive clients for interacting with the Nibiru blockchain and broadcasting transactions programmatically. Each client enables you to 
+Both the TypeScript SDK and Python SDK provide comprehensive clients for interacting with the Nibiru blockchain and broadcasting transactions programmatically. Each client enables you to
+
 1. Create accounts or restore them from mnemnoncis and private keys
 2. Query balances, events, and the state of the chain
 3. Sign and broadcast transactions
 
 ::: tip
-You can send multi-message transactions with both NibiJS and `nibiru.py` but not the `nibid` CLI. 
+You can send multi-message transactions with both NibiJS and `nibiru.py` but not the `nibid` CLI.
 :::
 
 ### [Nibid Command-Line Interface (CLI) [docs]](./cli)
@@ -38,18 +40,18 @@ NibiJS is particularly useful for building web applications in frameworks like V
 
 ### Block Explorer
 
-- [Nibiru Block Explorer][tool-explorer]: Block explorer for Nibiru 
+- [Nibiru Block Explorer][tool-explorer]: Block explorer for Nibiru
 
 ### Testnet Faucet
 
-- [Testnet Faucet (Repo)][repo-faucet]: Send tokens to your wallet on testnet 
+- [Testnet Faucet (Repo)][repo-faucet]: Send tokens to your wallet on testnet
 - [Usage Example GitHub Gist](https://gist.github.com/Unique-Divine/f2692c42a758afb98db55be3c4304f40#file-04_faucet-sh)
+
     ```shell
     FAUCET_URL="https://faucet.testnet-2.nibiru.fi/"
     ADDR="..." # ← with your address
     curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["10000000unibi","100000000000unusd"]}' $FAUCET_URL
     ```
-
 
 [tool-explorer]: https://explorer.testnet.nibiru.fi/
 [repo-faucet]: https://github.com/NibiruChain/faucet

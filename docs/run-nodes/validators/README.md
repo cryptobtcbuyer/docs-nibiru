@@ -4,23 +4,19 @@ order: 1
 
 # Validating on Testnet
 
-Instructions running a validator node {synopsis}
+Instructions for running a validator node {synopsis}
 
-As the first step, please follow the [instructions to join the testnet](../testnet).
+First, please follow the [instructions to join the testnet](../testnet).
 
-## Install the `nibid` binary
-
-Currently, the source code is not yet public, so pre-compiled binaries are required to run validator nodes.
-Please follow the binary installation instructions if you have not already.
-
-#### Save the Chain ID to your `nibid` config
-
+::: tip
 We recommend saving the `chain-id` into your `client.toml`.
 This prevents you from having to pass the `chain-id` flag with every CLI command.
 
 ```sh
 nibid config chain-id nibiru-testnet-2
 ```
+
+:::
 
 ## Send a `create-validator` transaction
 
