@@ -8,8 +8,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - docs/**
 
 jobs:
   # This is split into two jobs so that the build, which runs yarn, does not
