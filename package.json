@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "trap 'exit 0' SIGINT; vuepress dev docs --no-cache",
     "build": "trap 'exit 0' SIGINT; vuepress build docs --no-cache",
-    "docgen-nibijs": "yarn exec ./scripts/docgen-ts.sh"
+    "docgen-nibijs": "yarn exec ./docs/scripts/docgen-ts.sh"
   },
   "author": "Nibiru Chain",
   "license": "ISC",
