@@ -4,8 +4,8 @@
   "description": "Documentation",
   "main": "index.js",
   "scripts": {
-    "serve": "trap 'exit 0' SIGINT; vuepress dev --no-cache",
-    "build": "trap 'exit 0' SIGINT; vuepress build --no-cache",
+    "serve": "trap 'exit 0' SIGINT; vuepress dev docs --no-cache",
+    "build": "trap 'exit 0' SIGINT; vuepress build docs --no-cache",
     "docgen-nibijs": "yarn exec ./scripts/docgen-ts.sh"
   },
   "author": "Nibiru Chain",
