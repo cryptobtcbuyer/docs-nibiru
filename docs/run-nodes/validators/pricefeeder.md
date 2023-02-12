@@ -14,8 +14,8 @@ cd pricefeeder
 make run
 ```
 
-## From pre-compiled binary
+<!-- ## From pre-compiled binary
 
 ```bash
 
-```
+``` -->
