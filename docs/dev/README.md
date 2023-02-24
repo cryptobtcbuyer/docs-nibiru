@@ -48,9 +48,9 @@ NibiJS is particularly useful for building web applications in frameworks like V
 - [Usage Example GitHub Gist](https://gist.github.com/Unique-Divine/f2692c42a758afb98db55be3c4304f40#file-04_faucet-sh)
 
     ```shell
-    FAUCET_URL="https://faucet.testnet-2.nibiru.fi/"
+    FAUCET_URL="https://faucet.itn-1.nibiru.fi/"
     ADDR="..." # ← with your address
-    curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["10000000unibi","100000000000unusd"]}' $FAUCET_URL
+    curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["11000000unibi","100000000unusd","100000000uusdt"]}' $FAUCET_URL
     ```
 
 [tool-explorer]: https://explorer.testnet.nibiru.fi/

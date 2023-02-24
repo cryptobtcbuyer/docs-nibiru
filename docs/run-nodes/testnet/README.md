@@ -46,7 +46,7 @@ sudo apt update && sudo apt upgrade --yes
 ### Install nibid
 
 ```bash
-curl -s https://get.nibiru.fi/! | bash
+curl -s https://get.nibiru.fi/@v0.19.1! | bash
 ```
 
 ### Verify nibid version
