@@ -12,8 +12,8 @@ You can find a table of each Nibiru testnet and its current status below.
 
 | Network | Chain ID         | Description              | Version                                                               | Status |
 | ------- | ---------------- | ------------------------ | --------------------------------------------------------------------- | ------ |
-| Testnet | nibiru-testnet-2 | Nibiru's default testnet | [v0.16.3](https://github.com/NibiruChain/nibiru/releases/tag/v0.16.3) | Active |
-| Testnet | nibiru-testnet-3 | Nibiru's incentivized testnet |  | Coming Soon |
+| Testnet | nibiru-testnet-2 | Nibiru's default testnet | [v0.16.3](https://github.com/NibiruChain/nibiru/releases/tag/v0.16.3) | Deprecated |
+| Testnet | nibiru-itn-1 | Nibiru's incentivized testnet | [v0.19.1](https://github.com/NibiruChain/nibiru/releases/tag/v0.19.1)  | Active |
 
 ::: tip
 You can see current status of the blockchain at the [Nibiru Block Explorer](https://explorer.testnet.nibiru.fi/).
@@ -25,6 +25,7 @@ The explorer allows you to search through transactions, blocks, wallet addresses
 | Chain ID         | Block Time | Unbonding Time | Voting Period |
 | ---------------- | ---------- | -------------- | ------------- |
 | nibiru-testnet-2 | 2 seconds  | 2 hours        | 24 hours      |
+| nibiru-itn-1 | 1.5 seconds  | 24 hours        | 2 hours      |
 
 ---
 
@@ -34,7 +35,7 @@ The explorer allows you to search through transactions, blocks, wallet addresses
 
 - 4CPU
 - 16GB RAM
-- 500GB of disk space (SSD)
+- 1000GB of disk space (SSD)
 
 ### Update the system
 
@@ -53,7 +54,7 @@ curl -s https://get.nibiru.fi/! | bash
 ```bash
 nibid version
 
-# v0.16.3
+# v0.19.1
 ```
 
 ---
@@ -63,7 +64,7 @@ nibid version
 1. Init the chain
 
     ```bash
-    nibid init <moniker-name> --chain-id=nibiru-testnet-2 --home $HOME/.nibid
+    nibid init <moniker-name> --chain-id=nibiru-itn-1 --home $HOME/.nibid
     ```
 
 2. Create a local key pair
@@ -77,14 +78,14 @@ nibid version
     You can get genesis from our networks endpoint with:
 
     ```bash
-    NETWORK=nibiru-testnet-2
+    NETWORK=nibiru-itn-1
     curl -s https://networks.testnet.nibiru.fi/$NETWORK/genesis > $HOME/.nibid/config/genesis.json
     ```
 
     Or you can download it from the Tendermint RPC endpoint.
 
     ```bash
-    curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
+    curl -s https://rpc.itn-1.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
     ```
   
     **(Optional) Verify Genesis File Checksum**
@@ -92,13 +93,13 @@ nibid version
     ```bash
     shasum -a 256 $HOME/.nibid/config/genesis.json
 
-    # 5cedb9237c6d807a89468268071647649e90b40ac8cd6d1ded8a72323144880d $HOME/.nibid/config/genesis.json
+    # e162ace87f5cbc624aa2a4882006312ef8762a8a549cf4a22ae35bba12482c72 $HOME/.nibid/config/genesis.json
     ```
 
 4. Update seeds list in the configuration file `$HOME/.nibid/config/config.toml`.
 
     ```bash
-    NETWORK=nibiru-testnet-2
+    NETWORK=nibiru-itn-1
     sed -i 's|seeds =.*|seeds = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/seeds)'"|g' $HOME/.nibid/config/config.toml
     ```
 
@@ -108,10 +109,10 @@ nibid version
     sed -i 's/minimum-gas-prices =.*/minimum-gas-prices = "0.025unibi"/g' $HOME/.nibid/config/app.toml
     ```
 
-6. Setup state-sync parameters for catching up faster with the network (optional)
+6. Setup state-sync parameters for catching up faster with the network (optional, but recommended)
 
     ```bash
-    NETWORK=nibiru-testnet-2
+    NETWORK=nibiru-itn-1
     sed -i 's|enable =.*|enable = true|g' $HOME/.nibid/config/config.toml
     sed -i 's|rpc_servers =.*|rpc_servers = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/rpc_servers)'"|g' $HOME/.nibid/config/config.toml
     sed -i 's|trust_height =.*|trust_height = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/trust_height)'"|g' $HOME/.nibid/config/config.toml
@@ -131,15 +132,15 @@ nibid version
     sudo systemctl start cosmovisor-nibiru
     ```
 
-8. Request tokens from the [Web Faucet for nibiru-testnet-2](https://faucet.testnet-2.nibiru.fi/) if required.
+8. Request tokens from the [Web Faucet for nibiru-itn-1](https://faucet.itn-1.nibiru.fi/) if required.
 
     ```bash
-    FAUCET_URL="https://faucet.testnet-2.nibiru.fi/"
+    FAUCET_URL="https://faucet.itn-1.nibiru.fi/"
     ADDR="..." # your address 
-    curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["10000000unibi","100000000000unusd"]}' $FAUCET_URL
+    curl -X POST -d '{"address": "'"$ADDR"'", "coins": ["11000000unibi","100000000unusd","100000000uusdt"]}' $FAUCET_URL
     ```
 
-    Please note, that current daily limit for the Web Faucet is 11NIBI (`11000000unibi`) and 100 NUSD (`100000000unusd`).
+    <!-- Please note, that current daily limit for the Web Faucet is 11NIBI (`11000000unibi`) and 100 NUSD (`100000000unusd`). -->
 
     You can also use the testnet Faucet from the `#faucet` channel of the [Nibiru Chain Discord](https://discord.gg/sgPw8ZYfpQ).
 
