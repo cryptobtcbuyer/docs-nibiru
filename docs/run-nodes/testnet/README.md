@@ -79,7 +79,7 @@ nibid version
 
     ```bash
     NETWORK=nibiru-itn-1
-    curl -s https://networks.testnet.nibiru.fi/$NETWORK/genesis > $HOME/.nibid/config/genesis.json
+    curl -s https://networks.itn.nibiru.fi/$NETWORK/genesis > $HOME/.nibid/config/genesis.json
     ```
 
     Or you can download it from the Tendermint RPC endpoint.
