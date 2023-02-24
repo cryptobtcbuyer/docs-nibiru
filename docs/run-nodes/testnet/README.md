@@ -13,7 +13,7 @@ You can find a table of each Nibiru testnet and its current status below.
 | Network | Chain ID         | Description              | Version                                                               | Status |
 | ------- | ---------------- | ------------------------ | --------------------------------------------------------------------- | ------ |
 | Testnet | nibiru-testnet-2 | Nibiru's default testnet | [v0.16.3](https://github.com/NibiruChain/nibiru/releases/tag/v0.16.3) | Deprecated |
-| Testnet | nibiru-itn-1 | Nibiru's incentivized testnet | [v0.19.1](https://github.com/NibiruChain/nibiru/releases/tag/v0.19.1)  | Active |
+| Testnet | nibiru-itn-1 | Nibiru's incentivized testnet | [v0.19.2](https://github.com/NibiruChain/nibiru/releases/tag/v0.19.2)  | Active |
 
 ::: tip
 You can see current status of the blockchain at the [Nibiru Block Explorer](https://explorer.testnet.nibiru.fi/).
@@ -46,7 +46,7 @@ sudo apt update && sudo apt upgrade --yes
 ### Install nibid
 
 ```bash
-curl -s https://get.nibiru.fi/@v0.19.1! | bash
+curl -s https://get.nibiru.fi/@v0.19.2! | bash
 ```
 
 ### Verify nibid version
@@ -54,7 +54,7 @@ curl -s https://get.nibiru.fi/@v0.19.1! | bash
 ```bash
 nibid version
 
-# v0.19.1
+# v0.19.2
 ```
 
 ---
