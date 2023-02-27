@@ -8,27 +8,15 @@ Instructions for validators to set up a pricefeeder. {synopsis}
 
 1. Install the pricefeeder binary
 
-    ```sh
+    ```bash
     curl -s https://get.nibiru.fi/pricefeeder! | bash
     ```
-
-    <!-- 
-    Add this excerpt when local building is fixed. We still need to add static linking to the build steps.
-
-    Or you can install it from source
-
-    ```sh
-    git clone https://github.com/nibiruchain/pricefeeder
-    cd ./pricefeeder
-    make build
-    ``` 
-    -->
 
 2. Setup the systemd service
 
     See below for an explanation for the environment variables.
 
-    ```sh
+    ```bash
     export CHAIN_ID="nibiru-itn-1"
     export GRPC_ENDPOINT="localhost:9090"
     export WEBSOCKET_ENDPOINT="ws://localhost:26657/websocket"
@@ -37,7 +25,7 @@ Instructions for validators to set up a pricefeeder. {synopsis}
     export VALIDATOR_ADDRESS="nibi1valoper..."
     ```
 
-    ```sh
+    ```bash
     sudo tee /etc/systemd/system/pricefeeder.service<<EOF
     [Unit]
     Description=Nibiru Pricefeeder
@@ -65,13 +53,13 @@ Instructions for validators to set up a pricefeeder. {synopsis}
     EOF
     ```
 
-    ```sh
+    ```bash
     sudo systemctl daemon-reload && \
     sudo systemctl enable pricefeeder && \
     sudo systemctl start pricefeeder
     ```
 
-    ```sh
+    ```bash
     # view pricefeeder logs
     journalctl -fu pricefeeder
     ```
@@ -91,7 +79,7 @@ Instructions for validators to set up a pricefeeder. {synopsis}
 
 As a validator, if you'd like another account to post prices on your behalf (i.e. you don't want your validator mnemonic sending txs), you can delegate pricefeeder responsibilities to another nibi address.
 
-```sh
+```bash
 nibid tx oracle set-feeder <nibi address> --from validator
 ```
 
